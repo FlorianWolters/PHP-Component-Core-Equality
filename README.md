@@ -18,13 +18,13 @@ It is suggested to use the trait `EqualityTrait` if the [PHP][17] version is equ
 
 ## Features
 
-* The `EqualityTrait::equals` method implements a default equivalence relation on non-`null` object references (Refer to the section [Usage](#using-the-default-equivalence-relation) below for an example.):
+* The `EqualityTrait::equals` method implements a default equivalence relation on non-`null` object references (Refer to the section [Usage](#using-the-default-equivalence-relation) below for an example):
   * It is *reflexive*: for any non-`null` reference value `$x`, `$x->equals($x)` should return `true`.
   * It is *symmetric*: for any non-`null` reference values `$x` and `$y`, `$x->equals($y)` should return `true` if and only if `$y->equals($x)` returns `true`.
   * It is *transitive*: for any non-`null` reference values `$x`, `$y`, and `$z`, if `$x->equals($y)` returns `true` and `$y->equals($z)` returns `true`, then `$x->equals($z)` should return `true`.
   * It is *consistent*: for any non-`null` reference values `$x` and `$y`, multiple invocations of `$x->equals($y)` consistently return `true` or consistently return `false`, provided no information used in `equals` comparisons on the objects is modified.
   * For any non-`null` reference value `$x`, `$x->equals(null)` should return `false`.
-* The default equivalence relation can be customized by overriding the protected *Template Method* `EqualityTrait::doEqualityComparison` in the class using the trait `EqualityTrait`. Refer to the section [Usage](#customizing-the-default-equivalence-relation) below for an example.
+* The default equivalence relation can be customized by overriding the protected *Template Method* `EqualityTrait::doEqualityComparison` in the class using the trait `EqualityTrait` (Refer to the section [Usage](#customizing-the-default-equivalence-relation) below for an example).
 * Artifacts tested with both static and dynamic test procedures:
     * Dynamic component tests (unit tests) implemented using [PHPUnit][19].
     * Static code analysis performed using the following tools:
@@ -135,7 +135,6 @@ class EqualityDefaultImpl implements EqualityInterface
      * method {@link EqualityTrait::equals}.
      */
     use EqualityTrait;
-
 }
 ```
 
@@ -192,6 +191,7 @@ class EqualityCustomImpl implements EqualityInterface
      *
      * @param EqualityInterface $other The reference object with which to
      *                                 compare.
+     *
      * @return boolean `true` if this object is the same as the specified
      *                 object; `false` otherwise.
      */
@@ -254,5 +254,5 @@ You should have received a copy of the GNU Lesser General Public License along w
 [20]: http://semver.org
 [24]: http://packagist.org/packages/florianwolters/component-core-equality
 [25]: http://packagist.org
-[26]: http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#equals%28java.lang.Object%29
+[26]: http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#equals(java.lang.Object)
 [27]: http://java.com
