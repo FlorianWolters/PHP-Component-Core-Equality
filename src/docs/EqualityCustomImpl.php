@@ -46,6 +46,7 @@ class EqualityCustomImpl implements EqualityInterface
      *
      * @param EqualityInterface $other The reference object with which to
      *                                 compare.
+     *
      * @return boolean `true` if this object is the same as the specified
      *                 object; `false` otherwise.
      */
