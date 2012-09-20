@@ -19,5 +19,4 @@ class EqualityDefaultImpl implements EqualityInterface
      * method {@link EqualityTrait::equals}.
      */
     use EqualityTrait;
-
 }
