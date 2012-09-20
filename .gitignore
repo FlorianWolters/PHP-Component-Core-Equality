@@ -20,6 +20,10 @@ $RECYCLE.BIN/
 # KDE
 .directory
 
+# JetBrains PhpStorm
+
+.idea/workspace.xml
+
 # NetBeans IDE
 
 nbproject/private/
