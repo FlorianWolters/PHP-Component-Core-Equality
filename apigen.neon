@@ -26,7 +26,7 @@ exclude:
 skipDocPath:
 skipDocPrefix:
 main:
-title: FlorianWolters\Component\Core\Equality
+title: FlorianWolters\Component\Core
 baseUrl: http://florianwolters.github.com/PHP-Component-Core-Equality
 googleCseId:
 googleCseLabel:
