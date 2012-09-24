@@ -8,7 +8,7 @@
 
 This component is inspired by the method [`java.lang.Object.equals`][26] of the [Java][27] programming language.
 
-The component consists of three artifacts:
+**FlorianWolters\Component\Core\Equality** consists of three artifacts:
 
 1. The interface `FlorianWolters\Component\Core\EqualityInterface`.
 2. The trait `FlorianWolters\Component\Core\EqualityTrait` which implements a default equivalence relation on non-`null` object references.
@@ -32,13 +32,16 @@ It is suggested to use the trait `EqualityTrait` if the [PHP][17] version is equ
         * [PHP Mess Detector (PHPMD)][18]: Code Analyzer
         * [phpcpd][4]: Copy/Paste Detector (CPD)
         * [phpdcd][5]: Dead Code Detector (DCD)
-* Installable via [Composer][3] or [PEAR installer][11]:
+* Installable via [Composer][3] or the [PEAR command line installer][11]:
     * Provides a [Packagist][25] package which can be installed using the dependency manager [Composer][3].
-        * Click [here][24] for the package on [Packagist][25].
+
+      Click [here][24] for the package on [Packagist][25].
     * Provides a [PEAR package][13] which can be installed using the package manager [PEAR installer][11].
-        * Click [here][9] for the [PEAR channel][12].
+
+      Click [here][9] for the [PEAR channel][12].
 * Provides a complete Application Programming Interface (API) documentation generated with the documentation generator [ApiGen][2].
-    * Click [here][1] for the current API documentation.
+
+  Click [here][1] for the current API documentation.
 * Follows the [PSR-0][6] requirements for autoloader interoperability.
 * Follows the [PSR-1][7] basic coding style guide.
 * Follows the [PSR-2][8] coding style guide.
@@ -79,7 +82,7 @@ If you are creating a component that relies on **FlorianWolters\Component\Core\E
 ```json
 {
     "require": {
-        "florianwolters/component-core-equality": "0.1.*"
+        "florianwolters/component-core-equality": "0.1.*@beta"
     }
 }
 ```
@@ -111,96 +114,15 @@ The most important usage rule:
 
 ### Examples
 
-#### Using the default equivalence relation
+#### Using the default implementation
 
-```php
-<?php
-use FlorianWolters\Component\Core\EqualityInterface;
-use FlorianWolters\Component\Core\EqualityTrait;
+<https://github.com/FlorianWolters/PHP-Component-Core-Equality/blob/master/src/docs/EqualityDefaultImpl.php>
 
-/**
- * Demonstrates the usage of the default equivalence relation on non-`null`
- * object references implemented with the trait {@link EqualityTrait}.
- *
- * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2012 Florian Wolters
- * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
- * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
- * @since     Class available since Release 0.1.0
- */
-class EqualityDefaultImpl implements EqualityInterface
-{
-    /**
-     * Imports the class method {@link EqualityTrait::isEqual} and the member
-     * method {@link EqualityTrait::equals}.
-     */
-    use EqualityTrait;
-}
-```
-
-#### Customizing the default equivalence relation
+#### Using a custom implementation
 
 In the following example the default equivalence relation (identity via the `===` operator) is overwritten with a custom equivalence relation (equality via the `==` operator).
 
-```php
-<?php
-use FlorianWolters\Component\Core\EqualityInterface;
-use FlorianWolters\Component\Core\EqualityTrait;
-
-/**
- * Demonstrates the customization of the equivalence relation on non-`null`
- * object references implemented with the trait {@link EqualityTrait}.
- *
- * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2012 Florian Wolters
- * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
- * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
- * @since     Class available since Release 0.1.0
- */
-class EqualityCustomImpl implements EqualityInterface
-{
-    /**
-     * Imports the class method {@link EqualityTrait::isEqual} and the member
-     * method {@link EqualityTrait::equals}.
-     */
-    use EqualityTrait;
-
-    /**
-     * The value of this object.
-     *
-     * @var mixed
-     */
-    private $value;
-
-    /**
-     * Constructs a new object with the specified value.
-     *
-     * @param mixed $value The value.
-     */
-    public function __construct($value = null)
-    {
-        $this->value = $value;
-    }
-
-    /**
-     * Implements the algorithm that indicates whether some other object is
-     * "equal to" this object.
-     *
-     * This method overwrites the identity operator (`===`) used in {@link
-     * EqualityTrait::doEqualityComparison} with the equality operator (`==`).
-     *
-     * @param EqualityInterface $other The reference object with which to
-     *                                 compare.
-     *
-     * @return boolean `true` if this object is the same as the specified
-     *                 object; `false` otherwise.
-     */
-    protected function doEqualityComparison(EqualityInterface $other = null)
-    {
-        return $this == $other;
-    }
-}
-```
+<https://github.com/FlorianWolters/PHP-Component-Core-Equality/blob/master/src/docs/EqualityCustomImpl.php>
 
 ## Development Environment
 
@@ -233,26 +155,50 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Lesser General Public License along with this program. If not, see <http://gnu.org/licenses/lgpl.txt>.
 
 [1]: http://blog.florianwolters.de/PHP-Component-Core-Equality
+     "FlorianWolters\Component\Core | Application Programming Interface (API) documentation"
 [2]: http://apigen.org
+     "ApiGen | API documentation generator for PHP 5.3.+"
 [3]: http://getcomposer.org
+     "Composer"
 [4]: https://github.com/sebastianbergmann/phpcpd
+     "sebastianbergmann/phpcpd · GitHub"
 [5]: https://github.com/sebastianbergmann/phpdcd
+     "sebastianbergmann/phpdcd · GitHub"
 [6]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
+     "PSR-0 requirements for autoloader interoperability"
 [7]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
+     "PSR-1 basic coding style guide"
 [8]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
+     "PSR-2 coding style guide"
 [9]: http://pear.florianwolters.de
+     "PEAR channel of Florian Wolters"
 [10]: http://pear.php.net
+      "PEAR - PHP Extension and Application Repository"
 [11]: http://pear.php.net/manual/en/guide.users.commandline.cli.php
+      "Manual :: Command line installer (PEAR)"
 [12]: http://pear.php.net/manual/en/guide.users.concepts.channel.php
+      "Manual :: PEAR Channels"
 [13]: http://pear.php.net/manual/en/guide.users.concepts.package.php
+      "Manual :: PEAR Packages"
 [14]: http://pear.php.net/package/PHP_CodeSniffer
+      "PHP_CodeSniffer"
 [15]: http://phing.info
+      "Phing"
 [16]: https://github.com/stuartherbert/phix4componentdev
+      "stuartherbert/phix4componentdev · GitHub"
 [17]: http://php.net
+      "PHP: Hypertext Preprocessor"
 [18]: http://phpmd.org
+      "PHPMD - PHP Mess Detector"
 [19]: http://phpunit.de
+      "sebastianbergmann/phpunit · GitHub"
 [20]: http://semver.org
+      "Semantic Versioning"
 [24]: http://packagist.org/packages/florianwolters/component-core-equality
+      "florianwolters/component-core-debugprint - Packagist"
 [25]: http://packagist.org
+      "Packagist"
 [26]: http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#equals(java.lang.Object)
+      "Object (Java Platform SE 7)"
 [27]: http://java.com
+      "java.com: Java + You"
