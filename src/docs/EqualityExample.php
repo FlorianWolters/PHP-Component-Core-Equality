@@ -30,6 +30,7 @@ function output(
     EqualityInterface $thirdObj
 ) {
     writeLine();
+
     // Member method
     writeLine('$firstObj->equals($firstObj) = ' . $firstObj->equals($firstObj)); // reflexive!
     writeLine('$secondObj->equals($firstObj) = ' . $secondObj->equals($firstObj));
@@ -38,13 +39,10 @@ function output(
     writeLine('$firstObj->equals($thirdObj) = ' . $firstObj->equals($thirdObj)); // transitive!
 
     // Utility class method
-    writeLine('EqualityUtils::isEqual($firstObj, $secondObj) = ' . EqualityUtils::isEqual($firstObj, $secondObj));
-
-    // Class method (Will be removed in a future version!)
-    writeLine('EqualityDefaultImpl::isEqual($firstObj, $secondObj) = ' . EqualityDefaultImpl::isEqual($firstObj, $secondObj));
-
-    // Global function (Will be removed in a future version!)
-    writeLine('FlorianWolters\Component\Core\is_equal($firstObj, $secondObj) = ' . FlorianWolters\Component\Core\is_equal($firstObj, $secondObj));
+    writeLine(
+        'EqualityUtils::isEqual($firstObj, $secondObj) = '
+        . EqualityUtils::isEqual($firstObj, $secondObj)
+    );
     writeLine();
 }
 

@@ -54,15 +54,4 @@ class EqualityCustomImpl implements EqualityInterface
     {
         return $this == $other;
     }
-
-//    /**
-//     * @todo The method is declared as `final` in {@link EqualityTrait}. Is this
-//     *       a bug? (http://bugs.php.net/bug.php?id=62204)
-//     */
-//    final public static function isEqual(
-//        EqualityInterface $first = null,
-//        EqualityInterface $second = null
-//    ) {
-//        throw new \Exception;
-//    }
 }

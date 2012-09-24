@@ -56,22 +56,3 @@ class EqualityUtils
         return $result;
     }
 }
-
-/**
- * Indicates whether the two specified objects are "equal".
- *
- * @param EqualityInterface|null $first  The first reference object with
- *                                       which to compare.
- * @param EqualityInterface|null $second The second reference object with
- *                                       which to compare.
- *
- * @return boolean `true` if the two specified objects are the same; `false`
- *                 otherwise.
- * @todo Remove since global functions are strongly discouraged.
- */
-function is_equal(
-    EqualityInterface $first = null,
-    EqualityInterface $second = null
-) {
-    return $first->equals($second);
-}
