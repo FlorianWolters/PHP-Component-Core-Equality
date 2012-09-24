@@ -2,7 +2,7 @@
     "name": "florianwolters/component-core-equality",
     "description": "Implements an equivalence relation on non-null object references.",
     "type": "library",
-    "keywords": ["equality", "comparison", "language"],
+    "keywords": ["equality", "equals", "comparison", "core"],
     "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-Equality",
     "license": "LGPL-3.0+",
     "authors": [
