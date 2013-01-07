@@ -4,7 +4,7 @@ namespace FlorianWolters\Component\Core;
 use FlorianWolters\Mock\EqualityDefaultImplMock;
 
 /**
- * Test class for {@link EqualityUtilsTest}.
+ * Test class for {@link EqualityUtils}.
  *
  * @author    Florian Wolters <wolters.fl@gmail.com>
  * @copyright 2012 Florian Wolters
@@ -12,7 +12,7 @@ use FlorianWolters\Mock\EqualityDefaultImplMock;
  * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
  * @since     Class available since Release 0.1.0
  *
- * @covers FlorianWolters\Component\Core\EqualityUtilsTest
+ * @covers FlorianWolters\Component\Core\EqualityUtils
  */
 class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
 {
