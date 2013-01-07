@@ -37,12 +37,8 @@ class EqualityCustomImplMock implements EqualityInterface
 
     /**
      * {@inheritdoc}
-     *
-     * @param EqualityInterface $other
-     *
-     * @return boolean
      */
-    protected function doEqualityComparison(EqualityInterface $other)
+    public function equals(EqualityInterface $other = null)
     {
         return $this == $other;
     }

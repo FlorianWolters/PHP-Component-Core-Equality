@@ -48,29 +48,8 @@ trait EqualityTrait
      *
      * @return boolean `true` if this object is the same as the specified
      *                 object; `false` otherwise.
-     * @todo The current behaviour is equal to the Java programming language.
-     *       Change it as follows?
-     *       * Only allow comparison of instances from the same class?
-     *       * Disallow `null` references?
      */
-    final public function equals(EqualityInterface $other = null)
-    {
-        return $this->doEqualityComparison($other);
-    }
-
-    /**
-     * Implements the algorithm that indicates whether some other object is
-     * "equal to" this object.
-     *
-     * The `doEqualityComparison` can be overwritten to define a custom
-     * equivalence relation between two objects.
-     *
-     * @param EqualityInterface|null $other The reference object with which to
-     *                                      compare.
-     * @return boolean `true` if this object is the same as the specified
-     *                 object; `false` otherwise.
-     */
-    protected function doEqualityComparison(EqualityInterface $other = null)
+    public function equals(EqualityInterface $other = null)
     {
         return $this === $other;
     }
