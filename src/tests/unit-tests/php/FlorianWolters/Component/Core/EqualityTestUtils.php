@@ -1,6 +1,9 @@
 <?php
 namespace FlorianWolters\Component\Core;
 
+use FlorianWolters\Mock\EqualityCustomImplMock;
+use FlorianWolters\Mock\EqualityDefaultImplMock;
+
 class EqualityTestUtils
 {
     /**

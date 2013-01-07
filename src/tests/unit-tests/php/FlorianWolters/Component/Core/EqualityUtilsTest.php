@@ -1,6 +1,8 @@
 <?php
 namespace FlorianWolters\Component\Core;
 
+use FlorianWolters\Mock\EqualityDefaultImplMock;
+
 /**
  * Test class for {@link EqualityUtilsTest}.
  *
