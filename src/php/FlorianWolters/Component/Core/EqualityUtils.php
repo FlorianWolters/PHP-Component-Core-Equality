@@ -55,4 +55,22 @@ class EqualityUtils
 
         return $result;
     }
+
+    /**
+     * Indicates whether the two specified objects are not "equal".
+     *
+     * @param EqualityInterface|null $first  The first reference object with
+     *                                       which to compare.
+     * @param EqualityInterface|null $second The second reference object with
+     *                                       which to compare.
+     *
+     * @return boolean `true` if the two specified objects are not the same;
+     *                 `false` otherwise.
+     */
+    public static function isNotEqual(
+        EqualityInterface $first = null,
+        EqualityInterface $second = null
+    ) {
+        return false === self::isEqual($first, $second);
+    }
 }
