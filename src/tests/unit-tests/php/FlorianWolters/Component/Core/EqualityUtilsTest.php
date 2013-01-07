@@ -39,12 +39,13 @@ class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public static function providerIsEqualWithNullAsFirstArgument()
+    public static function providerIsEqualWithNull()
     {
         return [
             // Test cases with null
             [true, null, null],
-            [false, null, new EqualityDefaultImplMock]
+            [false, null, new EqualityDefaultImplMock],
+            [false, new EqualityDefaultImplMock, null]
         ];
     }
 
@@ -56,10 +57,10 @@ class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
      * @return void
      *
      * @coversDefaultClass isEqual
-     * @dataProvider providerIsEqualWithNullAsFirstArgument
+     * @dataProvider providerIsEqualWithNull
      * @test
      */
-    public function testIsEqualWithNullAsFirstArgument(
+    public function testIsEqualWithNull(
         $expected,
         EqualityInterface $first = null,
         EqualityInterface $second = null
