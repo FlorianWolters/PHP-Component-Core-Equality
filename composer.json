@@ -1,6 +1,6 @@
 {
     "name": "florianwolters/component-core-equality",
-    "description": "Implements an equivalence relation on non-null object references.",
+    "description": "Implements an equivalence relation on non-null object references as a PHP component.",
     "type": "library",
     "keywords": ["equality", "equals", "comparison", "core"],
     "homepage": "http://github.com/FlorianWolters/PHP-Component-Core-Equality",
