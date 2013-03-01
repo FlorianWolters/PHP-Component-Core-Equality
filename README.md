@@ -10,21 +10,19 @@ This component is inspired by the method [`java.lang.Object.equals`][26] of the 
 
 **FlorianWolters\Component\Core\Equality** consists of three artifacts:
 
-1. The interface `FlorianWolters\Component\Core\EqualityInterface`.
-2. The trait `FlorianWolters\Component\Core\EqualityTrait` which implements a default equivalence relation on non-`null` object references.
-3. The static class `FlorianWolters\Component\Core\EqualityUtils` which offers operations for equivalence relations on non-`null` object references.
-
-It is suggested to use the trait `EqualityTrait` if the [PHP][17] version is equal or greater than 5.4.0.
+1. The interface [`FlorianWolters\Component\Core\EqualityInterface`][28]: Indicates that an implementing class implements an equivalence relation on non-`null` object references.
+2. The trait [`FlorianWolters\Component\Core\EqualityTrait`][29]: Implements a default equivalence relation on non-`null` object references.
+3. The static class [`FlorianWolters\Component\Core\EqualityUtils`][30]: Offers operations for equivalence relations on non-`null` object references.
 
 ## Features
 
-* The `EqualityTrait::equals` method implements a default equivalence relation on non-`null` object references (Refer to the section [Usage](#using-the-default-equivalence-relation) below for an example):
+* Offers a default equivalence relation implementation via the method `equals` of the trait [`EqualityTrait`][29]. Refer to the section [Usage](#using-the-default-equivalence-relation) below for an example.
   * It is *reflexive*: for any non-`null` reference value `$x`, `$x->equals($x)` should return `true`.
   * It is *symmetric*: for any non-`null` reference values `$x` and `$y`, `$x->equals($y)` should return `true` if and only if `$y->equals($x)` returns `true`.
   * It is *transitive*: for any non-`null` reference values `$x`, `$y`, and `$z`, if `$x->equals($y)` returns `true` and `$y->equals($z)` returns `true`, then `$x->equals($z)` should return `true`.
   * It is *consistent*: for any non-`null` reference values `$x` and `$y`, multiple invocations of `$x->equals($y)` consistently return `true` or consistently return `false`, provided no information used in `equals` comparisons on the objects is modified.
   * For any non-`null` reference value `$x`, `$x->equals(null)` should return `false`.
-* The default equivalence relation can be customized by overriding the protected *Template Method* `EqualityTrait::doEqualityComparison` in the class using the trait `EqualityTrait` (Refer to the section [Usage](#customizing-the-default-equivalence-relation) below for an example).
+* Allows to create a custom equivalence relation by implementing the interface [`EqualityInterface`][28], more precisely implementing the public method `equals` of that interface. Refer to the section [Usage](#using-a-custom-implementation) below for an example.
 * Artifacts tested with both static and dynamic test procedures:
     * Dynamic component tests (unit tests) implemented using [PHPUnit][19].
     * Static code analysis performed using the following tools:
@@ -49,8 +47,27 @@ It is suggested to use the trait `EqualityTrait` if the [PHP][17] version is equ
 
 ## Requirements
 
-* [PHP][17] >= 5.3.0
-* [PHP][17] >= 5.4.0 to use the trait `EqualityTrait`
+* [PHP][17] >= 5.4
+
+## Usage
+
+The best documentation for **FlorianWolters\Component\Core\Equality** are the unit tests, which are shipped in the package. You will find them installed into your [PEAR][10] repository, which on Linux systems is normally `/usr/share/php/test`.
+
+The most important usage rule:
+
+> Always implement the interface [`EqualityInterface`][28] if using the trait [`EqualityTrait`][29], since that allows [Type Hinting][31].
+
+### Examples
+
+The class [`EqualityExample`](src/docs/EqualityExample.php) can be run via the command `php src/docs/EqualityExample.php` from the root of the project.
+
+#### Using the default implementation
+
+The class [`EqualityDefaultImpl`](src/tests/mocks/FlorianWolters/Mock/EqualityDefaultImpl.php) uses the default implementation of the trait [`EqualityTrait`][29], which uses the identical (`===`) operator.
+
+#### Using a custom implementation
+
+The class [`EqualityCustomImpl`](src/tests/mocks/FlorianWolters/Mock/EqualityCustomImpl.php) implements a custom implementation, which uses the equal (`==`) operator.
 
 ## Installation
 
@@ -82,7 +99,7 @@ If you are creating a component that relies on **FlorianWolters\Component\Core\E
 ```json
 {
     "require": {
-        "florianwolters/component-core-equality": "0.1.*@beta"
+        "florianwolters/component-core-equality": "0.1.*"
     }
 }
 ```
@@ -103,26 +120,6 @@ If you are creating a component that relies on **FlorianWolters\Component\Core\E
   </required>
 </dependencies>
 ```
-
-## Usage
-
-The best documentation for **FlorianWolters\Component\Core\Equality** are the unit tests, which are shipped in the package. You will find them installed into your [PEAR][10] repository, which on Linux systems is normally `/usr/share/php/test`.
-
-The most important usage rule:
-
-> Always implement the interface `EqualityInterface` if using the trait `EqualityTrait`.
-
-### Examples
-
-#### Using the default implementation
-
-<https://github.com/FlorianWolters/PHP-Component-Core-Equality/blob/master/src/docs/EqualityDefaultImpl.php>
-
-#### Using a custom implementation
-
-In the following example the default equivalence relation (identity via the `===` operator) is overwritten with a custom equivalence relation (equality via the `==` operator).
-
-<https://github.com/FlorianWolters/PHP-Component-Core-Equality/blob/master/src/docs/EqualityCustomImpl.php>
 
 ## Development Environment
 
@@ -202,3 +199,11 @@ You should have received a copy of the GNU Lesser General Public License along w
       "Object (Java Platform SE 7)"
 [27]: http://java.com
       "java.com: Java + You"
+[28]: src/php/FlorianWolters/Component/Core/EqualityInterface.php
+      "FlorianWolters\Component\Core\EqualityInterface"
+[29]: src/php/FlorianWolters/Component/Core/EqualityTrait.php
+      "FlorianWolters\Component\Core\EqualityTrait"
+[30]: src/php/FlorianWolters/Component/Core/EqualityUtils.php
+      "FlorianWolters\Component\Core\EqualityUtils"
+[31]: http://php.net/language.oop5.typehinting
+      "PHP: Type Hinting - Manual"
