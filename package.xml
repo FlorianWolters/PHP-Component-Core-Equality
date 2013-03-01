@@ -18,7 +18,7 @@
  ! along with this program. If not, see http://gnu.org/licenses/lgpl.txt.
  !
  ! Author:    Florian Wolters <wolters.fl@gmail.com>
- ! Copyright: 2012 Florian Wolters
+ ! Copyright: 2012-2013 Florian Wolters
  ! License:   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
  ! Link:      http://github.com/FlorianWolters/PHP-Component-Core-Equality
  !-->
@@ -83,6 +83,23 @@ ${contents}</dir>
     <phprelease />
 
     <changelog>
+        <release>
+            <version>
+                <release>0.1.1</release>
+                <api>0.1</api>
+            </version>
+            <stability>
+                <release>stable</release>
+                <api>beta</api>
+            </stability>
+            <date>2013-03-01</date>
+            <license uri="http://gnu.org/licenses/lgpl.txt">LGPL-3.0+</license>
+            <notes>- Enhanced documentation.
+- Moved mock classes to dedicated directory.
+- Updated example file.
+- Lots of cosmetic changes.</notes>
+        </release>
+
         <release>
             <version>
                 <release>0.1.0</release>
