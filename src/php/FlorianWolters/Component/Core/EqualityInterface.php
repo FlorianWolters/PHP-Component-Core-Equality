@@ -2,11 +2,11 @@
 namespace FlorianWolters\Component\Core;
 
 /**
- * The interface {@link EqualityInterface} indicates that an implementing class
+ * The interface {@see EqualityInterface} indicates that an implementing class
  * implements an equivalence relation on non-`null` object references.
  *
  * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2012 Florian Wolters
+ * @copyright 2012-2013 Florian Wolters
  * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
  * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
  * @since     Interface available since Release 0.1.0

@@ -2,11 +2,11 @@
 namespace FlorianWolters\Component\Core;
 
 /**
- * The trait {@link EqualityTrait} implements an equivalence relation on
+ * The trait {@see EqualityTrait} implements a default equivalence relation on
  * non-`null` object references.
  *
  * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2012 Florian Wolters
+ * @copyright 2012-2013 Florian Wolters
  * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
  * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
  * @since     Trait available since Release 0.1.0
@@ -16,8 +16,8 @@ trait EqualityTrait
     /**
      * Indicates whether the specified object is "equal to" this object.
      *
-     * The {@link equals} method implements an equivalence relation on
-     * non-`null` object references:
+     * The {@see equals} method implements an equivalence relation on non-`null`
+     * object references:
      *
      * * It is *reflexive*: for any non-`null` reference value `$x`,
      *   `$x->equals($x)` should return `true`.
@@ -34,17 +34,17 @@ trait EqualityTrait
      * * For any non-`null` reference value `$x`, `$x->equals(null)` should
      *   return `false`.
      *
-     * The {@link equals} method of trait {@link EqualityTrait} implements the
+     * The {@see equals} method of trait {@see EqualityTrait} implements the
      * most discriminating possible equivalence relation on objects; that is,
      * for any non-`null` reference values `$x` and `$y`, this method returns
      * `true` if and only if `$x` and `$y` refer to the same object
      * (`$x === `$y` has the value `true`).
      *
-     * The {@link equals} method implements the *Equality Method* implementation
+     * The {@see equals} method implements the *Equality Method* implementation
      * pattern.
      *
-     * @param EqualityInterface|null  $other The reference object with which to
-     *                                       compare.
+     * @param EqualityInterface|null $other The reference object with which to
+     *                                      compare.
      *
      * @return boolean `true` if this object is the same as the specified
      *                 object; `false` otherwise.
