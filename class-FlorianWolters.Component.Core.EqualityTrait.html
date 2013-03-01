@@ -6,7 +6,7 @@
 
 	<title>Trait FlorianWolters\Component\Core\EqualityTrait | FlorianWolters\Component\Core</title>
 
-	<script type="text/javascript" src="resources/combined.js?1469125792"></script>
+	<script type="text/javascript" src="resources/combined.js?819867491"></script>
 	<script type="text/javascript" src="elementlist.js?2948440065"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
@@ -96,7 +96,7 @@
 
 	<div class="description">
 	
-<p>The trait <code><a href="class-FlorianWolters.Component.Core.EqualityTrait.html">FlorianWolters\Component\Core\EqualityTrait</a></code> implements an equivalence relation on
+<p>The trait <code><a href="class-FlorianWolters.Component.Core.EqualityTrait.html">FlorianWolters\Component\Core\EqualityTrait</a></code> implements a default equivalence relation on
 non-<code>null</code> object references.</p>
 
 	</div>
@@ -116,7 +116,7 @@ non-<code>null</code> object references.</p>
 		
 
 				<b>Copyright:</b>
-				2012 Florian Wolters<br />
+				2012-2013 Florian Wolters<br />
 				<b>License:</b>
 				<a href="http://gnu.org/licenses/lgpl.txt">LGPL-3.0+</a><br />
 				<b>Author:</b>
@@ -126,7 +126,7 @@ href="mailto:wolters.fl&#64;gmail.com">wolters.fl&#64;<!---->gmail.com</a>&gt;<b
 				Trait available since Release 0.1.0<br />
 				<b>Link:</b>
 				<a href="http://github.com/FlorianWolters/PHP-Component-Core-Equality">http://github.com/FlorianWolters/PHP-Component-Core-Equality</a><br />
-		<b>Located at</b> <a href="source-class-FlorianWolters.Component.Core.EqualityTrait.html#4-77" title="Go to source code">FlorianWolters/Component/Core/EqualityTrait.php</a><br />
+		<b>Located at</b> FlorianWolters/Component/Core/EqualityTrait.php<br />
 	</div>
 
 
@@ -136,7 +136,7 @@ href="mailto:wolters.fl&#64;gmail.com">wolters.fl&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="equals" id="_equals">
 
 		<td class="attributes"><code>
-			final public 
+			 public 
 			boolean
 			
 			</code>
@@ -144,7 +144,7 @@ href="mailto:wolters.fl&#64;gmail.com">wolters.fl&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_equals">#</a>
-		<code><a href="source-class-FlorianWolters.Component.Core.EqualityTrait.html#16-59" title="Go to source code">equals</a>( <span><code><a href="class-FlorianWolters.Component.Core.EqualityInterface.html">FlorianWolters\Component\Core\EqualityInterface</a></code> <var>$other</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>equals( <span><code><a href="class-FlorianWolters.Component.Core.EqualityInterface.html">FlorianWolters\Component\Core\EqualityInterface</a></code> <var>$other</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -193,54 +193,6 @@ method returns <code>true</code> if and only if <code>$x</code> and
 
 <p>The <code><a href="class-FlorianWolters.Component.Core.EqualityTrait.html#_equals">FlorianWolters\Component\Core\EqualityTrait::equals()</a></code> method implements the <em>Equality Method</em>
 implementation pattern.</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$other</var></dt>
-					<dd><code><code><a href="class-FlorianWolters.Component.Core.EqualityInterface.html">FlorianWolters\Component\Core\EqualityInterface</a></code>|null</code><br>$other The reference object with which to compare.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br><code>true</code> if this object is the same as the specified object;
-<code>false</code> otherwise.<br />
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="doEqualityComparison" id="_doEqualityComparison">
-
-		<td class="attributes"><code>
-			 protected 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_doEqualityComparison">#</a>
-		<code><a href="source-class-FlorianWolters.Component.Core.EqualityTrait.html#61-76" title="Go to source code">doEqualityComparison</a>( <span><code><a href="class-FlorianWolters.Component.Core.EqualityInterface.html">FlorianWolters\Component\Core\EqualityInterface</a></code> <var>$other</var> = <span class="php-keyword1">null</span></span> )</code>
-
-		<div class="description short">
-			
-<p>Implements the algorithm that indicates whether some other object is "equal
-to" this object.</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Implements the algorithm that indicates whether some other object is "equal
-to" this object.</p>
-
-<p>The <code>doEqualityComparison</code> can be overwritten to define a custom
-equivalence relation between two objects.</p>
 
 
 
