@@ -1,18 +1,18 @@
 <?php
 namespace FlorianWolters\Component\Core;
 
-use FlorianWolters\Mock\EqualityDefaultImplMock;
+use FlorianWolters\Mock\EqualityDefaultImpl;
 
 /**
- * Test class for {@link EqualityUtils}.
+ * Test class for {@see EqualityUtils}.
  *
  * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2012 Florian Wolters
+ * @copyright 2012-2013 Florian Wolters
  * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
  * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
  * @since     Class available since Release 0.1.0
  *
- * @covers FlorianWolters\Component\Core\EqualityUtils
+ * @covers    FlorianWolters\Component\Core\EqualityUtils
  */
 class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
 {
@@ -94,8 +94,8 @@ class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
         return [
             // Test cases with null
             [true, null, null],
-            [false, null, new EqualityDefaultImplMock],
-            [false, new EqualityDefaultImplMock, null]
+            [false, null, new EqualityDefaultImpl],
+            [false, new EqualityDefaultImpl, null]
         ];
     }
 

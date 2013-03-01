@@ -1,14 +1,23 @@
 <?php
 namespace FlorianWolters\Component\Core;
 
-use FlorianWolters\Mock\EqualityCustomImplMock;
-use FlorianWolters\Mock\EqualityDefaultImplMock;
+use FlorianWolters\Mock\EqualityCustomImpl;
+use FlorianWolters\Mock\EqualityDefaultImpl;
 
+/**
+ * The class {@see EqualityTestUtils} TODO.
+ *
+ * @author    Florian Wolters <wolters.fl@gmail.com>
+ * @copyright 2012-2013 Florian Wolters
+ * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
+ * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
+ * @since     Class available since Release 0.1.0
+ */
 class EqualityTestUtils
 {
     /**
-     * {@link EqualityTestUtils} instances can **NOT** be constructed in
-     * standard programming.
+     * {@see EqualityTestUtils} instances can **NOT** be constructed in standard
+     * programming.
      */
     private function __construct()
     {
@@ -19,13 +28,13 @@ class EqualityTestUtils
      */
     public static function providerEquals()
     {
-        $firstDefault = new EqualityDefaultImplMock;
-        $secondDefault = new EqualityDefaultImplMock;
-        $thirdDefault = new EqualityDefaultImplMock;
+        $firstDefault = new EqualityDefaultImpl;
+        $secondDefault = new EqualityDefaultImpl;
+        $thirdDefault = new EqualityDefaultImpl;
 
-        $firstCustom = new EqualityCustomImplMock;
-        $secondCustom = new EqualityCustomImplMock(0);
-        $thirdCustom = new EqualityCustomImplMock('');
+        $firstCustom = new EqualityCustomImpl;
+        $secondCustom = new EqualityCustomImpl(0);
+        $thirdCustom = new EqualityCustomImpl('');
 
         return [
             // Test cases for the default behaviour class.
