@@ -19,10 +19,10 @@ require __DIR__ . '/../../vendor/autoload.php';
 final class EqualityExample
 {
     /**
-     * Runs the {@see DebugPrintExample}.
+     * Runs this {@see EqualityExample}.
      *
-     * @param integer $argc The number of arguments.
-     * @param array   $argv The arguments.
+     * @param integer  $argc The number of arguments.
+     * @param string[] $argv The arguments.
      *
      * @return integer Always `0`.
      */
@@ -62,7 +62,6 @@ final class EqualityExample
     }
 
     /**
-     *
      * @param EqualityInterface $firstObj
      * @param EqualityInterface $secondObj
      * @param EqualityInterface $thirdObj
