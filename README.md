@@ -192,7 +192,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 [20]: http://semver.org
       "Semantic Versioning"
 [24]: http://packagist.org/packages/florianwolters/component-core-equality
-      "florianwolters/component-core-debugprint - Packagist"
+      "florianwolters/component-core-equality - Packagist"
 [25]: http://packagist.org
       "Packagist"
 [26]: http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#equals(java.lang.Object)
