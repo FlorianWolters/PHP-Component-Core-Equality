@@ -1,8 +1,11 @@
 <?php
+namespace FlorianWolters;
+
 use FlorianWolters\Component\Core\EqualityInterface;
 use FlorianWolters\Component\Core\EqualityUtils;
-use FlorianWolters\Mock\EqualityCustomImplMock;
-use FlorianWolters\Mock\EqualityDefaultImplMock;
+use FlorianWolters\Mock\CustomEqualityImpl;
+use FlorianWolters\Mock\ReferenceEqualityImpl;
+use FlorianWolters\Mock\ValueEqualityImpl;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -29,8 +32,9 @@ final class EqualityExample
     public static function main($argc, array $argv = [])
     {
         $self = new self;
-        $self->demonstrateDefaultImplementation();
-        $self->demonstrateCustomImplementation();
+        $self->demonstrateReferenceEquality();
+        $self->demonstrateValueEquality();
+        $self->demonstrateCustomEquality();
 
         return 0;
     }
@@ -38,26 +42,42 @@ final class EqualityExample
     /**
      * @return void
      */
-    private function demonstrateDefaultImplementation()
+    private function demonstrateReferenceEquality()
     {
-        $firstObj = new EqualityDefaultImplMock;
-        $secondObj = new EqualityDefaultImplMock;
-        $thirdObj = new EqualityDefaultImplMock;
+        $firstObj = new ReferenceEqualityImpl;
+        $secondObj = new ReferenceEqualityImpl;
+        $thirdObj = new ReferenceEqualityImpl;
 
-        $this->writeLine('Default implementation:');
+        $this->writeLine('Reference equality using ReferenceEqualityTrait:');
         $this->output($firstObj, $secondObj, $thirdObj);
     }
 
     /**
      * @return void
      */
-    private function demonstrateCustomImplementation()
+    private function demonstrateValueEquality()
     {
-        $firstObj = new EqualityCustomImplMock;
-        $secondObj = new EqualityCustomImplMock(false);
-        $thirdObj = new EqualityCustomImplMock(0);
+        $firstObj = new ValueEqualityImpl;
+        $firstObj->value = null;
+        $secondObj = new ValueEqualityImpl;
+        $secondObj->value = false;
+        $thirdObj = new ValueEqualityImpl;
+        $thirdObj->value = true;
 
-        $this->writeLine('Custom implementation:');
+        $this->writeLine('Value equality using ValueEqualityTrait:');
+        $this->output($firstObj, $secondObj, $thirdObj);
+    }
+
+    /**
+     * @return void
+     */
+    private function demonstrateCustomEquality()
+    {
+        $firstObj = new CustomEqualityImpl(1, 0);
+        $secondObj = new CustomEqualityImpl(1, 1);
+        $thirdObj = new CustomEqualityImpl(2, 0);
+
+        $this->writeLine('Custom equality using a client implementation:');
         $this->output($firstObj, $secondObj, $thirdObj);
     }
 
@@ -92,10 +112,14 @@ final class EqualityExample
             '$firstObj->equals($thirdObj) = ' . $firstObj->equals($thirdObj)
         ); // transitive!
 
-        // Utility class method
+        // Utility class methods
         $this->writeLine(
             'EqualityUtils::isEqual($firstObj, $secondObj) = '
             . EqualityUtils::isEqual($firstObj, $secondObj)
+        );
+        $this->writeLine(
+            'EqualityUtils::isNotEqual($firstObj, $secondObj) = '
+            . EqualityUtils::isNotEqual($firstObj, $secondObj)
         );
         $this->writeLine();
     }
