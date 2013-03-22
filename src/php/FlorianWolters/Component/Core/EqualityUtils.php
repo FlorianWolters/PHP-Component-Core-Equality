@@ -11,7 +11,7 @@ namespace FlorianWolters\Component\Core;
  * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
  * @since     Class available since Release 0.1.0
  */
-class EqualityUtils
+final class EqualityUtils
 {
     // @codeCoverageIgnoreStart
 
@@ -24,7 +24,7 @@ class EqualityUtils
      * EqualityUtils::isEqual($firstObject, $secondObject);
      * \---
      */
-    private function __construct()
+    protected function __construct()
     {
     }
 
