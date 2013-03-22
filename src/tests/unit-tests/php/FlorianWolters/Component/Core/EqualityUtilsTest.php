@@ -1,7 +1,8 @@
 <?php
 namespace FlorianWolters\Component\Core;
 
-use FlorianWolters\Mock\EqualityDefaultImpl;
+use FlorianWolters\Mock\ReferenceEqualityImpl;
+use FlorianWolters\Mock\ValueEqualityImpl;
 
 /**
  * Test class for {@see EqualityUtils}.
@@ -87,15 +88,17 @@ class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public static function providerIsEqualWithNull()
     {
         return [
             // Test cases with null
             [true, null, null],
-            [false, null, new EqualityDefaultImpl],
-            [false, new EqualityDefaultImpl, null]
+            [false, null, new ReferenceEqualityImpl],
+            [false, new ReferenceEqualityImpl, null],
+            [false, null, new ValueEqualityImpl],
+            [false, new ValueEqualityImpl, null]
         ];
     }
 

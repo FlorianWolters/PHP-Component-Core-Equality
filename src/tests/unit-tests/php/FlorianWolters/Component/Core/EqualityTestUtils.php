@@ -1,11 +1,9 @@
 <?php
 namespace FlorianWolters\Component\Core;
 
-use FlorianWolters\Mock\EqualityCustomImpl;
-use FlorianWolters\Mock\EqualityDefaultImpl;
-
 /**
- * The class {@see EqualityTestUtils} TODO.
+ * The utility class {@see EqualityTestUtils} contains data providers for the
+ * equality test cases.
  *
  * @author    Florian Wolters <wolters.fl@gmail.com>
  * @copyright 2012-2013 Florian Wolters
@@ -13,7 +11,7 @@ use FlorianWolters\Mock\EqualityDefaultImpl;
  * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
  * @since     Class available since Release 0.1.0
  */
-class EqualityTestUtils
+final class EqualityTestUtils
 {
     /**
      * {@see EqualityTestUtils} instances can **NOT** be constructed in standard
@@ -24,44 +22,13 @@ class EqualityTestUtils
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public static function providerEquals()
     {
-        $firstDefault = new EqualityDefaultImpl;
-        $secondDefault = new EqualityDefaultImpl;
-        $thirdDefault = new EqualityDefaultImpl;
+        $referenceProvider = ReferenceEqualityTraitTest::providerEquals();
+        $valueProvider = ValueEqualityTraitTest::providerEquals();
 
-        $firstCustom = new EqualityCustomImpl;
-        $secondCustom = new EqualityCustomImpl(0);
-        $thirdCustom = new EqualityCustomImpl('');
-
-        return [
-            // Test cases for the default behaviour class.
-
-            // reflexive?
-            [true, $firstDefault, $firstDefault],
-            // symmetric?
-            [false, $secondDefault, $firstDefault],
-            [false, $firstDefault, $secondDefault],
-            // transitive?
-            [false, $secondDefault, $thirdDefault],
-            [false, $firstDefault, $thirdDefault],
-
-            // Test cases for the custom behaviour class.
-
-            // reflexive?
-            [true, $firstCustom, $firstCustom],
-            // symmetric?
-            [true, $secondCustom, $firstCustom],
-            [true, $firstCustom, $secondCustom],
-            // transitive?
-            [true, $secondCustom, $thirdCustom],
-            [true, $firstCustom, $thirdCustom],
-
-            [false, $firstDefault, $firstCustom],
-            [false, $firstCustom, $firstDefault],
-            [false, $firstDefault, null]
-        ];
+        return \array_merge($referenceProvider, $valueProvider);
     }
 }
