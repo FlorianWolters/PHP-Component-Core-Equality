@@ -2,27 +2,31 @@
 
 [![Build Status](https://secure.travis-ci.org/FlorianWolters/PHP-Component-Core-Equality.png?branch=master)](http://travis-ci.org/FlorianWolters/PHP-Component-Core-Equality)
 
-**FlorianWolters\Component\Core\Equality** is a simple-to-use [PHP][17] component that implements an equivalence relation on non-`null` object references.
+**FlorianWolters\Component\Core\Equality** is a simple-to-use [PHP][17] component that implements equivalence relations on non-`null` object references.
 
 ## Introduction
 
 This component is inspired by the method [`java.lang.Object.equals`][26] of the [Java][27] programming language.
 
-**FlorianWolters\Component\Core\Equality** consists of three artifacts:
+**FlorianWolters\Component\Core\Equality** consists of four artifacts:
 
 1. The interface [`FlorianWolters\Component\Core\EqualityInterface`][28]: Indicates that an implementing class implements an equivalence relation on non-`null` object references.
-2. The trait [`FlorianWolters\Component\Core\EqualityTrait`][29]: Implements a default equivalence relation on non-`null` object references.
-3. The static class [`FlorianWolters\Component\Core\EqualityUtils`][30]: Offers operations for equivalence relations on non-`null` object references.
+2. The trait [`FlorianWolters\Component\Core\ReferenceEqualityTrait`][29]: Implements a **reference** equivalence relation on non-`null` object references.
+3. The trait [`FlorianWolters\Component\Core\ValueEqualityTrait`][30]: Implements a **value** equivalence relation on non-`null` object references.
+4. The static class [`FlorianWolters\Component\Core\EqualityUtils`][31]: Offers operations for equivalence relations on non-`null` object references.
 
 ## Features
 
-* Offers a default equivalence relation implementation via the method `equals` of the trait [`EqualityTrait`][29]. Refer to the section [Usage](#using-the-default-equivalence-relation) below for an example.
+* Offers two default equivalence relation implementations:
+  * **Reference Equality** implemented via the trait [`ReferenceEqualityTrait`][29]. Refer to the section [Usage](#reference-equality) below for an example.
+  * **Value Equality** implemented via the trait [`ValueEqualityTrait`][30]. Refer to the section [Usage](#value-equality) below for an example.
+* Allows to create a custom equivalence relation by implementing the interface [`EqualityInterface`][28], more precisely implementing the public method `equals` of that interface. Refer to the section [Usage](#custom-equality) below for an example.
+* The `equals` method implements an equivalence relation on non-`null` object references:
   * It is *reflexive*: for any non-`null` reference value `$x`, `$x->equals($x)` should return `true`.
   * It is *symmetric*: for any non-`null` reference values `$x` and `$y`, `$x->equals($y)` should return `true` if and only if `$y->equals($x)` returns `true`.
   * It is *transitive*: for any non-`null` reference values `$x`, `$y`, and `$z`, if `$x->equals($y)` returns `true` and `$y->equals($z)` returns `true`, then `$x->equals($z)` should return `true`.
   * It is *consistent*: for any non-`null` reference values `$x` and `$y`, multiple invocations of `$x->equals($y)` consistently return `true` or consistently return `false`, provided no information used in `equals` comparisons on the objects is modified.
   * For any non-`null` reference value `$x`, `$x->equals(null)` should return `false`.
-* Allows to create a custom equivalence relation by implementing the interface [`EqualityInterface`][28], more precisely implementing the public method `equals` of that interface. Refer to the section [Usage](#using-a-custom-implementation) below for an example.
 * Artifacts tested with both static and dynamic test procedures:
     * Dynamic component tests (unit tests) implemented using [PHPUnit][19].
     * Static code analysis performed using the following tools:
@@ -32,13 +36,10 @@ This component is inspired by the method [`java.lang.Object.equals`][26] of the 
         * [phpdcd][5]: Dead Code Detector (DCD)
 * Installable via [Composer][3] or the [PEAR command line installer][11]:
     * Provides a [Packagist][25] package which can be installed using the dependency manager [Composer][3].
-
       Click [here][24] for the package on [Packagist][25].
     * Provides a [PEAR package][13] which can be installed using the package manager [PEAR installer][11].
-
       Click [here][9] for the [PEAR channel][12].
 * Provides a complete Application Programming Interface (API) documentation generated with the documentation generator [ApiGen][2].
-
   Click [here][1] for the current API documentation.
 * Follows the [PSR-0][6] requirements for autoloader interoperability.
 * Follows the [PSR-1][7] basic coding style guide.
@@ -55,19 +56,74 @@ The best documentation for **FlorianWolters\Component\Core\Equality** are the un
 
 The most important usage rule:
 
-> Always implement the interface [`EqualityInterface`][28] if using the trait [`EqualityTrait`][29], since that allows [Type Hinting][31].
+> Always implement the interface [`EqualityInterface`][28] if using the trait [`ReferenceEqualityTrait`][29] or [`ValueEqualityTrait`][30], since that allows [Type Hinting][32].
 
 ### Examples
 
 The class [`EqualityExample`](src/docs/EqualityExample.php) can be run via the command `php src/docs/EqualityExample.php` from the root of the project.
 
-#### Using the default implementation
+#### Reference Equality
 
-The class [`EqualityDefaultImpl`](src/tests/mocks/FlorianWolters/Mock/EqualityDefaultImpl.php) uses the default implementation of the trait [`EqualityTrait`][29], which uses the identical (`===`) operator.
+The class [`ReferenceEqualityImpl`](src/tests/mocks/FlorianWolters/Mock/ReferenceEqualityImpl.php) uses the **Reference Equality** implementation of the trait [`ReferenceEqualityTrait`][29], that utilizes the identity operator (`===`) of [PHP][17].
 
-#### Using a custom implementation
+#### Value Equality
 
-The class [`EqualityCustomImpl`](src/tests/mocks/FlorianWolters/Mock/EqualityCustomImpl.php) implements a custom implementation, which uses the equal (`==`) operator.
+The class [`ValueEqualityImpl`](src/tests/mocks/FlorianWolters/Mock/ValueEqualityImpl.php) uses the **Value Equality** implementation of the trait [`ValueEqualityTrait`][30], that utilizes the equality operator (`==`) of [PHP][17].
+
+#### Custom Equality
+
+One can define a custom equivalence relation by implementing the interface [`EqualityInterface`][28], more precisely implementing the public method `equals` of that interface.
+
+***
+**Note:** The equivalence relations must be *reflexive*, *symmetric*, *transitive* and *consistent*. Refer to the section [Features](#features) for a more detailed explanation of these characteristics.
+***
+
+For example, a custom equivalence relation for a simple *Domain Object* could be specified as:
+
+```php
+use FlorianWolters\Component\Core\EqualityInterface;
+
+<?php
+class CustomEqualityImpl implements EqualityInterface
+{
+    /**
+     * The *Identity Field* value.
+     *
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * The version.
+     *
+     * @var integer
+     */
+    private $version;
+
+    /**
+     * Constructs a new object.
+     *
+     * @param integer $id      The *Identity Field* value.
+     * @param integer $version The version.
+     */
+    public function __construct($id, $version)
+    {
+        $this->id = $id;
+        $this->version = $version;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function equals(EqualityInterface $other = null)
+    {
+        // Check the type of the argument with the type operator "instanceof".
+        return (true === ($other instanceof self))
+            ? ($this->id === $other->id)
+            : false;
+    }
+}
+```
 
 ## Installation
 
@@ -99,7 +155,7 @@ If you are creating a component that relies on **FlorianWolters\Component\Core\E
 ```json
 {
     "require": {
-        "florianwolters/component-core-equality": "0.1.*"
+        "florianwolters/component-core-equality": "0.2.*"
     }
 }
 ```
@@ -114,8 +170,8 @@ If you are creating a component that relies on **FlorianWolters\Component\Core\E
     <package>
       <name>Equality</name>
       <channel>pear.florianwolters.de</channel>
-      <min>0.1.0</min>
-      <max>0.1.99</max>
+      <min>0.2.0</min>
+      <max>0.2.99</max>
     </package>
   </required>
 </dependencies>
@@ -201,9 +257,11 @@ You should have received a copy of the GNU Lesser General Public License along w
       "java.com: Java + You"
 [28]: src/php/FlorianWolters/Component/Core/EqualityInterface.php
       "FlorianWolters\Component\Core\EqualityInterface"
-[29]: src/php/FlorianWolters/Component/Core/EqualityTrait.php
-      "FlorianWolters\Component\Core\EqualityTrait"
-[30]: src/php/FlorianWolters/Component/Core/EqualityUtils.php
+[29]: src/php/FlorianWolters/Component/Core/ReferenceEqualityTrait.php
+      "FlorianWolters\Component\Core\ReferenceEqualityTrait"
+[30]: src/php/FlorianWolters/Component/Core/ValueEqualityTrait.php
+      "FlorianWolters\Component\Core\ValueEqualityTrait"
+[31]: src/php/FlorianWolters/Component/Core/EqualityUtils.php
       "FlorianWolters\Component\Core\EqualityUtils"
-[31]: http://php.net/language.oop5.typehinting
+[32]: http://php.net/language.oop5.typehinting
       "PHP: Type Hinting - Manual"
