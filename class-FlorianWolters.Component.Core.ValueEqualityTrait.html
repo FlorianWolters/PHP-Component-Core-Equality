@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Interface FlorianWolters\Component\Core\EqualityInterface | FlorianWolters\Component\Core</title>
+	<title>Trait FlorianWolters\Component\Core\ValueEqualityTrait | FlorianWolters\Component\Core</title>
 
 	<script type="text/javascript" src="resources/combined.js?3383669236"></script>
 	<script type="text/javascript" src="elementlist.js?1045920600"></script>
@@ -42,13 +42,13 @@
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li class="active"><a href="class-FlorianWolters.Component.Core.EqualityInterface.html">EqualityInterface</a></li>
+				<li><a href="class-FlorianWolters.Component.Core.EqualityInterface.html">EqualityInterface</a></li>
 			</ul>
 
 			<h3>Traits</h3>
 			<ul>
 				<li><a href="class-FlorianWolters.Component.Core.ReferenceEqualityTrait.html">ReferenceEqualityTrait</a></li>
-				<li><a href="class-FlorianWolters.Component.Core.ValueEqualityTrait.html">ValueEqualityTrait</a></li>
+				<li class="active"><a href="class-FlorianWolters.Component.Core.ValueEqualityTrait.html">ValueEqualityTrait</a></li>
 			</ul>
 
 
@@ -92,14 +92,13 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Interface EqualityInterface</h1>
+	<h1>Trait ValueEqualityTrait</h1>
 
 
 	<div class="description">
 	
-<p>The interface <code><a href="class-FlorianWolters.Component.Core.EqualityInterface.html">FlorianWolters\Component\Core\EqualityInterface</a></code> indicates that an implementing class
-implements an equivalence relation on non-<code>null</code> object
-references.</p>
+<p>The trait <code><a href="class-FlorianWolters.Component.Core.ValueEqualityTrait.html">FlorianWolters\Component\Core\ValueEqualityTrait</a></code> implements a <strong>value</strong>
+equivalence relation on non-<code>null</code> object references.</p>
 
 	</div>
 
@@ -125,10 +124,10 @@ references.</p>
 				Florian Wolters &lt;<a
 href="mailto:wolters.fl&#64;gmail.com">wolters.fl&#64;<!---->gmail.com</a>&gt;<br />
 				<b>Since:</b>
-				Interface available since Release 0.1.0<br />
+				Trait available since Release 0.2.0<br />
 				<b>Link:</b>
 				<a href="http://github.com/FlorianWolters/PHP-Component-Core-Equality">http://github.com/FlorianWolters/PHP-Component-Core-Equality</a><br />
-		<b>Located at</b> FlorianWolters/Component/Core/EqualityInterface.php<br />
+		<b>Located at</b> FlorianWolters/Component/Core/ValueEqualityTrait.php<br />
 	</div>
 
 
@@ -138,7 +137,7 @@ href="mailto:wolters.fl&#64;gmail.com">wolters.fl&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="equals" id="_equals">
 
 		<td class="attributes"><code>
-			 public 
+			final public 
 			boolean
 			
 			</code>
@@ -158,7 +157,7 @@ href="mailto:wolters.fl&#64;gmail.com">wolters.fl&#64;<!---->gmail.com</a>&gt;<b
 			
 <p>Indicates whether the specified object is "equal to" this object.</p>
 
-<p>The <code><a href="class-FlorianWolters.Component.Core.EqualityInterface.html#_equals">FlorianWolters\Component\Core\EqualityInterface::equals()</a></code> method implements an equivalence relation on
+<p>The <code><a href="class-FlorianWolters.Component.Core.ValueEqualityTrait.html#_equals">FlorianWolters\Component\Core\ValueEqualityTrait::equals()</a></code> method implements an equivalence relation on
 non-<code>null</code> object references:</p>
 
 <ul>
@@ -180,13 +179,20 @@ non-<code>null</code> object references:</p>
 	<li>It is <em>consistent</em>: for any non-<code>null</code> reference values
 	<code>$x</code> and <code>$y</code>, multiple invocations of
 	<code>$x-&gt;equals($y)</code> consistently return <code>true</code> or
-	consistently return <code>false</code>, provided no information used in <code><a href="class-FlorianWolters.Component.Core.EqualityInterface.html#_equals">FlorianWolters\Component\Core\EqualityInterface::equals()</a></code> comparisons on the objects is modified.</li>
+	consistently return <code>false</code>, provided no information used in <code><a href="class-FlorianWolters.Component.Core.ValueEqualityTrait.html#_equals">FlorianWolters\Component\Core\ValueEqualityTrait::equals()</a></code> comparisons on the objects is modified.</li>
 
 	<li>For any non-<code>null</code> reference value <code>$x</code>,
 	<code>$x-&gt;equals(null)</code> should return <code>false</code>.</li>
 </ul>
 
-<p>The <code><a href="class-FlorianWolters.Component.Core.EqualityInterface.html#_equals">FlorianWolters\Component\Core\EqualityInterface::equals()</a></code> method implements the <em>Equality Method</em>
+<p>The <code><a href="class-FlorianWolters.Component.Core.ValueEqualityTrait.html#_equals">FlorianWolters\Component\Core\ValueEqualityTrait::equals()</a></code> method of trait <code><a href="class-FlorianWolters.Component.Core.ValueEqualityTrait.html">FlorianWolters\Component\Core\ValueEqualityTrait</a></code> implements an
+equivalence relation for value objects; that is, for any non-<code>null</code>
+reference values <code>$x</code> and <code>$y</code>, this method returns
+<code>true</code> if and only if <code>$x</code> and <code>$y</code> refer to
+objects of the same class with the same properties (<code>$x == `$y</code> has
+the value <code>true</code>).</p>
+
+<p>The <code><a href="class-FlorianWolters.Component.Core.ValueEqualityTrait.html#_equals">FlorianWolters\Component\Core\ValueEqualityTrait::equals()</a></code> method implements the <em>Equality Method</em>
 implementation pattern.</p>
 
 

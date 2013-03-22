@@ -21,6 +21,9 @@
 	<loc>http://florianwolters.github.com/PHP-Component-Core-Equality/class-FlorianWolters.Component.Core.EqualityInterface.html</loc>
 </url>
 <url>
-	<loc>http://florianwolters.github.com/PHP-Component-Core-Equality/class-FlorianWolters.Component.Core.EqualityTrait.html</loc>
+	<loc>http://florianwolters.github.com/PHP-Component-Core-Equality/class-FlorianWolters.Component.Core.ReferenceEqualityTrait.html</loc>
+</url>
+<url>
+	<loc>http://florianwolters.github.com/PHP-Component-Core-Equality/class-FlorianWolters.Component.Core.ValueEqualityTrait.html</loc>
 </url>
 </urlset>
