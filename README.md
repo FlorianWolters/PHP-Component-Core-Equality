@@ -7,7 +7,7 @@ implements equivalence relations on non-`null` object references.
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/FlorianWolters/PHP-Component-Core-Equality/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/FlorianWolters/PHP-Component-Core-Equality/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/FlorianWolters/PHP-Component-Core-Equality/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/FlorianWolters/PHP-Component-Core-Equality/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/2f0f9543-4799-4ed1-9c57-99962cf47771/mini.png)](https://insight.sensiolabs.com/projects/2f0f9543-4799-4ed1-9c57-99962cf47771)
-[![Coverage Status](https://coveralls.io/repos/FlorianWolters/PHP-Component-Core-Equality/badge.png?branch=master)](https://coveralls.io/r/FlorianWolters/PHP-Component-Core-Equality?branch=master)
+[![Coverage Status](https://img.shields.io/coveralls/FlorianWolters/PHP-Component-Core-Equality.svg)](https://coveralls.io/r/FlorianWolters/PHP-Component-Core-Equality?branch=master)
 
 [![Latest Stable Version](https://poser.pugx.org/florianwolters/component-core-equality/v/stable.png)](https://packagist.org/packages/florianwolters/component-core-equality)
 [![Total Downloads](https://poser.pugx.org/florianwolters/component-core-equality/downloads.png)](https://packagist.org/packages/florianwolters/component-core-equality)
