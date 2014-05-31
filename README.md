@@ -314,9 +314,9 @@ with this program. If not, see <https://gnu.org/licenses/lgpl.txt>.
       "FlorianWolters\Component\Core\EqualityUtils"
 [60]: resources/php/EqualityExample.php
       "FlorianWolters\Example\EqualityExample"
-[61]: resources/php/ReferenceEqualityImpl.php
+[61]: src/test/resources/ReferenceEqualityImpl.php
       "FlorianWolters\Example\ReferenceEqualityImpl"
-[62]: resources/php/ValueEqualityImpl.php
+[62]: src/test/resources/ValueEqualityImpl.php
       "FlorianWolters\Example\ValueEqualityImpl"
 [63]: resources/php/CustomEqualityImpl.php
       "FlorianWolters\Example\CustomEqualityImpl"
