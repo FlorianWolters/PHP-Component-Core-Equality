@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="index, follow, all" />
+        <title>FlorianWolters\Component\Core\ReferenceEqualityTrait | </title>
+                    <link rel="stylesheet" type="text/css" href="../../../stylesheet.css">
+                            </head>
+        <body id="class">
+            <div class="header">
+        <ul>
+            <li><a href="../../../classes.html">Classes</a></li>
+                            <li><a href="../../../namespaces.html">Namespaces</a></li>
+                        <li><a href="../../../interfaces.html">Interfaces</a></li>
+            <li><a href="../../../traits.html">Traits</a></li>
+            <li><a href="../../../doc-index.html">Index</a></li>
+            
+        </ul>
+
+        <div id="title"></div>
+
+            <div class="type">Trait</div>
+    <h1><a href="../../../FlorianWolters/Component/Core.html">FlorianWolters\Component\Core</a>\ReferenceEqualityTrait</h1>
+    </div>
+        <div class="content">
+                <p>    trait
+    <strong>ReferenceEqualityTrait</strong></p>
+
+            <div class="description">
+            <p>The trait {see ReferenceEqualityTrait} implements a <strong>reference</strong> equivalence relation on non-<code>null</code> object references.</p>
+            <p>
+</p>
+        </div>
+    
+    
+    
+            <h2>Methods</h2>
+
+            <table>
+                    <tr>
+                <td class="type">
+                    bool
+                </td>
+                <td class="last">
+                    <a href="#method_equals">equals</a>(<a href="../../../FlorianWolters/Component/Core/EqualityInterface.html"><abbr title="FlorianWolters\Component\Core\EqualityInterface">EqualityInterface</abbr></a> $other = null)
+                    <p>Indicates whether the specified object is "equal to" this object.</p>
+                </td>
+                <td></td>
+            </tr>
+            </table>
+
+
+        <h2>Details</h2>
+
+                        <h3 id="method_equals">
+        <div class="location">at line 59</div>
+        <code>final            public            bool
+    <strong>equals</strong>(<a href="../../../FlorianWolters/Component/Core/EqualityInterface.html"><abbr title="FlorianWolters\Component\Core\EqualityInterface">EqualityInterface</abbr></a> $other = null)</code>
+    </h3>
+    <div class="details">
+        <p>Indicates whether the specified object is "equal to" this object.</p>
+        <p>The {see equals} method implements an equivalence relation on non-<code>null</code>
+object references:</p>
+
+<ul>
+<li>It is <em>reflexive</em>: for any non-<code>null</code> reference value <code>$x</code>,
+<code>$x-&gt;equals($x)</code> should return <code>true</code>.</li>
+<li>It is <em>symmetric</em>: for any non-<code>null</code> reference values <code>$x</code> and <code>$y</code>,
+<code>$x-&gt;equals($y)</code> should return <code>true</code> if and only if <code>$y-&gt;equals($x)</code>
+returns <code>true</code>.</li>
+<li>It is <em>transitive</em>: for any non-<code>null</code> reference values <code>$x</code>, <code>$y</code>, and
+<code>$z</code>, if <code>$x-&gt;equals($y)</code> returns <code>true</code> and <code>$y-&gt;equals($z)</code> returns
+<code>true</code>, then <code>$x-&gt;equals($z)</code> should return <code>true</code>.</li>
+<li>It is <em>consistent</em>: for any non-<code>null</code> reference values <code>$x</code> and <code>$y</code>,
+multiple invocations of <code>$x-&gt;equals($y)</code> consistently return <code>true</code> or
+consistently return <code>false</code>, provided no information used in {@link
+equals} comparisons on the objects is modified.</li>
+<li>For any non-<code>null</code> reference value <code>$x</code>, <code>$x-&gt;equals(null)</code> should
+return <code>false</code>.</li>
+</ul>
+
+<p>The {see equals} method of trait {see ReferenceEqualityTrait}
+implements the most discriminating possible equivalence relation on
+objects; that is, for any non-<code>null</code> reference values <code>$x</code> and <code>$y</code>, this
+method returns <code>true</code> if and only if <code>$x</code> and <code>$y</code> refer to the same
+object (<code>$x ===</code>$y<code>has the value</code>true`).</p>
+
+<p>The {see equals} method implements the <em>Equality Method</em> implementation
+pattern.</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../../../FlorianWolters/Component/Core/EqualityInterface.html"><abbr title="FlorianWolters\Component\Core\EqualityInterface">EqualityInterface</abbr></a></td>
+                <td>$other</td>
+                <td>The reference object with which to compare.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>bool</td>
+            <td><code>true</code> if this object is the same as the specified object; <code>false</code> otherwise.</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+    
+            </div>
+            <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/" target="_top">Sami, the API Documentation Generator</a>.
+    </div>
+    </body>
+</html>
