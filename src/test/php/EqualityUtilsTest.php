@@ -43,7 +43,8 @@ final class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    static function providerEquals() {
+    public static function providerEquals()
+    {
         // TODO(wolters): Remove duplication with ReferenceEqualityTraitTest and
         // ValueEqualityTraitTest. Since PHPUnit v4, data providers cannot be
         // reused in the same way?!
