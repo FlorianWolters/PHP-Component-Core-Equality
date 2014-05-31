@@ -1,31 +1,35 @@
 <?php
+/**
+ * FlorianWolters\Component\Core\Equality
+ *
+ * PHP Version 5.4
+ *
+ * @author    Florian Wolters <wolters.fl@gmail.com>
+ * @copyright 2012-2014 Florian Wolters (http://blog.florianwolters.de)
+ * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
+ * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
+ */
+
 namespace FlorianWolters\Component\Core;
 
-use FlorianWolters\Mock\ReferenceEqualityImpl;
-use FlorianWolters\Mock\ValueEqualityImpl;
+use FlorianWolters\Example\ReferenceEqualityImpl;
+use FlorianWolters\Example\ValueEqualityImpl;
 
 /**
  * Test class for {@see EqualityUtils}.
  *
- * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2012-2013 Florian Wolters
- * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
- * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
- * @since     Class available since Release 0.1.0
- *
- * @covers    FlorianWolters\Component\Core\EqualityUtils
+ * @since Class available since Release 0.1.0
  */
-class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
+final class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @param boolean                $expected
+     * @param bool                   $expected
      * @param EqualityInterface|null $first
      * @param EqualityInterface|null $second
      *
      * @return void
      *
-     * @coversDefaultClass isEqual
-     * @dataProvider FlorianWolters\Component\Core\EqualityTestUtils::providerEquals
+     * @dataProvider providerEquals
      * @test
      */
     public function testIsEqual(
@@ -37,7 +41,49 @@ class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param boolean                $expected
+     * @return array
+     */
+    static function providerEquals() {
+        // TODO(wolters): Remove duplication with ReferenceEqualityTraitTest and
+        // ValueEqualityTraitTest. Since PHPUnit v4, data providers cannot be
+        // reused in the same way?!
+        $firstReference = new ReferenceEqualityImpl;
+        $secondReference = new ReferenceEqualityImpl;
+        $thirdReference = new ReferenceEqualityImpl;
+        $firstValue = new ValueEqualityImpl;
+        $secondValue = new ValueEqualityImpl;
+        $thirdValue = new ValueEqualityImpl;
+        $fourthValue = new ValueEqualityImpl;
+        $fourthValue->foo = 'bar';
+
+        return [
+            // reflexive?
+            [true, $firstReference, $firstReference],
+            // symmetric?
+            [false, $secondReference, $firstReference],
+            [false, $firstReference, $secondReference],
+            // transitive?
+            [false, $secondReference, $thirdReference],
+            [false, $firstReference, $thirdReference],
+            // works with null argument?
+            [false, $firstReference, null],
+            // reflexive?
+            [true, $firstValue, $firstValue],
+            // symmetric?
+            [true, $secondValue, $firstValue],
+            [true, $firstValue, $secondValue],
+            // transitive?
+            [true, $secondValue, $thirdValue],
+            [true, $firstValue, $thirdValue],
+            // works with null argument?
+            [false, $firstValue, null],
+            // implements value equality?
+            [false, $firstValue, $fourthValue]
+        ];
+    }
+
+    /**
+     * @param bool                   $expected
      * @param EqualityInterface|null $first
      * @param EqualityInterface|null $second
      *
@@ -53,14 +99,13 @@ class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param boolean                $expected
+     * @param bool                   $expected
      * @param EqualityInterface|null $first
      * @param EqualityInterface|null $second
      *
      * @return void
      *
-     * @coversDefaultClass isNotEqual
-     * @dataProvider FlorianWolters\Component\Core\EqualityTestUtils::providerEquals
+     * @dataProvider providerEquals
      * @test
      */
     public function testIsNotEqual(
@@ -72,7 +117,7 @@ class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param boolean                $expected
+     * @param bool                   $expected
      * @param EqualityInterface|null $first
      * @param EqualityInterface|null $second
      *
@@ -88,7 +133,7 @@ class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return mixed[]
+     * @return array
      */
     public static function providerIsEqualWithNull()
     {
@@ -103,13 +148,12 @@ class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param boolean                $expected
+     * @param bool                   $expected
      * @param EqualityInterface|null $first
      * @param EqualityInterface|null $second
      *
      * @return void
      *
-     * @coversDefaultClass isEqual
      * @dataProvider providerIsEqualWithNull
      * @test
      */
@@ -122,13 +166,12 @@ class EqualityUtilsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param boolean                $expected
+     * @param bool                   $expected
      * @param EqualityInterface|null $first
      * @param EqualityInterface|null $second
      *
      * @return void
      *
-     * @coversDefaultClass isEqual
      * @dataProvider providerIsEqualWithNull
      * @test
      */

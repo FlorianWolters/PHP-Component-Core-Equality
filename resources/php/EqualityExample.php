@@ -1,33 +1,41 @@
 <?php
+/**
+ * FlorianWolters\Component\Core\Equality
+ *
+ * PHP Version 5.4
+ *
+ * @author    Florian Wolters <wolters.fl@gmail.com>
+ * @copyright 2012-2014 Florian Wolters (http://blog.florianwolters.de)
+ * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
+ * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
+ */
+
 namespace FlorianWolters;
 
 use FlorianWolters\Component\Core\EqualityInterface;
 use FlorianWolters\Component\Core\EqualityUtils;
-use FlorianWolters\Mock\CustomEqualityImpl;
-use FlorianWolters\Mock\ReferenceEqualityImpl;
-use FlorianWolters\Mock\ValueEqualityImpl;
+use FlorianWolters\Example\CustomEqualityImpl;
+use FlorianWolters\Example\ReferenceEqualityImpl;
+use FlorianWolters\Example\ValueEqualityImpl;
 
 require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/CustomEqualityImpl.php';
 
 /**
  * The class {@see EqualityExample} implements a simple command line application
  * to demonstrate the component **FlorianWolters\Component\Core\Equality**.
  *
- * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2012-2013 Florian Wolters
- * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
- * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
- * @since     Class available since Release 0.1.1
+ * @since Class available since Release 0.1.1
  */
 final class EqualityExample
 {
     /**
      * Runs this {@see EqualityExample}.
      *
-     * @param integer  $argc The number of arguments.
-     * @param string[] $argv The arguments.
+     * @param int   $argc The number of arguments.
+     * @param array $argv The arguments.
      *
-     * @return integer Always `0`.
+     * @return int Always `0`.
      */
     public static function main($argc, array $argv = [])
     {

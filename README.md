@@ -1,267 +1,322 @@
-# FlorianWolters\Component\Core\Equality
+# Component\Core\Equality
 
-[![Build Status](https://secure.travis-ci.org/FlorianWolters/PHP-Component-Core-Equality.png?branch=master)](http://travis-ci.org/FlorianWolters/PHP-Component-Core-Equality)
+**Component\Core\Equality** is a simple-to-use [PHP][1] component that
+implements equivalence relations on non-`null` object references.
 
-**FlorianWolters\Component\Core\Equality** is a simple-to-use [PHP][17] component that implements equivalence relations on non-`null` object references.
+[![Build Status](https://travis-ci.org/FlorianWolters/PHP-Component-Core-Equality.svg?branch=master)](https://travis-ci.org/FlorianWolters/PHP-Component-Core-Equality)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/FlorianWolters/PHP-Component-Core-Equality/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/FlorianWolters/PHP-Component-Core-Equality/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/FlorianWolters/PHP-Component-Core-Equality/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/FlorianWolters/PHP-Component-Core-Equality/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/2f0f9543-4799-4ed1-9c57-99962cf47771/mini.png)](https://insight.sensiolabs.com/projects/2f0f9543-4799-4ed1-9c57-99962cf47771)
+[![Coverage Status](https://coveralls.io/repos/FlorianWolters/PHP-Component-Core-Equality/badge.png?branch=master)](https://coveralls.io/r/FlorianWolters/PHP-Component-Core-Equality?branch=master)
+
+[![Latest Stable Version](https://poser.pugx.org/florianwolters/component-core-equality/v/stable.png)](https://packagist.org/packages/florianwolters/component-core-equality)
+[![Total Downloads](https://poser.pugx.org/florianwolters/component-core-equality/downloads.png)](https://packagist.org/packages/florianwolters/component-core-equality)
+[![Monthly Downloads](https://poser.pugx.org/florianwolters/component-core-equality/d/monthly.png)](https://packagist.org/packages/florianwolters/component-core-equality)
+[![Daily Downloads](https://poser.pugx.org/florianwolters/component-core-equality/d/daily.png)](https://packagist.org/packages/florianwolters/component-core-equality)
+[![Latest Unstable Version](https://poser.pugx.org/florianwolters/component-core-equality/v/unstable.png)](https://packagist.org/packages/florianwolters/component-core-equality)
+[![License](https://poser.pugx.org/florianwolters/component-core-equality/license.png)](https://packagist.org/packages/florianwolters/component-core-equality)
+
+[![Stories in Ready](https://badge.waffle.io/florianwolters/php-component-core-equality.png?label=ready&title=Ready)](https://waffle.io/florianwolters/php-component-core-equality)
+[![Dependency Status](https://www.versioneye.com/user/projects/51c330fd5862c40002000541/badge.svg)](https://www.versioneye.com/user/projects/51c330fd5862c40002000541)
+[![Dependencies Status](https://depending.in/FlorianWolters/PHP-Component-Core-Equality.png)](http://depending.in/FlorianWolters/PHP-Component-Core-Equality)
+[![HHVM Status](http://hhvm.h4cc.de/badge/florianwolters/component-core-equality.png)](http://hhvm.h4cc.de/package/florianwolters/component-core-equality)
+
+## Table of Contents (ToC)
+
+* [Introduction](#introduction)
+* [Features](#features)
+* [Requirements](#requirements)
+* [Usage](#usage)
+* [Installation](#installation)
+* [Testing](#testing)
+* [Contributing](#contributing)
+* [Credits](#credits)
+* [License](#license)
 
 ## Introduction
 
-This component is inspired by the method [`java.lang.Object.equals`][26] of the [Java][27] programming language.
+This component is inspired by the method [`java.lang.Object.equals`][53] of the [Java][54] programming language.
 
-**FlorianWolters\Component\Core\Equality** consists of four artifacts:
+**Component\Core\Equality** consists of four artifacts:
 
-1. The interface [`FlorianWolters\Component\Core\EqualityInterface`][28]: Indicates that an implementing class implements an equivalence relation on non-`null` object references.
-2. The trait [`FlorianWolters\Component\Core\ReferenceEqualityTrait`][29]: Implements a **reference** equivalence relation on non-`null` object references.
-3. The trait [`FlorianWolters\Component\Core\ValueEqualityTrait`][30]: Implements a **value** equivalence relation on non-`null` object references.
-4. The static class [`FlorianWolters\Component\Core\EqualityUtils`][31]: Offers operations for equivalence relations on non-`null` object references.
+1. The interface [`FlorianWolters\Component\Core\EqualityInterface`][56]:
+   Indicates that an implementing class implements an equivalence relation on
+   non-`null` object references.
+2. The trait [`FlorianWolters\Component\Core\ReferenceEqualityTrait`][57]:
+   Implements a **reference** equivalence relation on non-`null` object
+   references.
+3. The trait [`FlorianWolters\Component\Core\ValueEqualityTrait`][58]:
+   Implements a **value** equivalence relation on non-`null` object references.
+4. The static class [`FlorianWolters\Component\Core\EqualityUtils`][59]: Offers
+   operations for equivalence relations on non-`null` object references.
 
 ## Features
 
 * Offers two default equivalence relation implementations:
-  * **Reference Equality** implemented via the trait [`ReferenceEqualityTrait`][29]. Refer to the section [Usage](#reference-equality) below for an example.
-  * **Value Equality** implemented via the trait [`ValueEqualityTrait`][30]. Refer to the section [Usage](#value-equality) below for an example.
-* Allows to create a custom equivalence relation by implementing the interface [`EqualityInterface`][28], more precisely implementing the public method `equals` of that interface. Refer to the section [Usage](#custom-equality) below for an example.
-* The `equals` method implements an equivalence relation on non-`null` object references:
-  * It is *reflexive*: for any non-`null` reference value `$x`, `$x->equals($x)` should return `true`.
-  * It is *symmetric*: for any non-`null` reference values `$x` and `$y`, `$x->equals($y)` should return `true` if and only if `$y->equals($x)` returns `true`.
-  * It is *transitive*: for any non-`null` reference values `$x`, `$y`, and `$z`, if `$x->equals($y)` returns `true` and `$y->equals($z)` returns `true`, then `$x->equals($z)` should return `true`.
-  * It is *consistent*: for any non-`null` reference values `$x` and `$y`, multiple invocations of `$x->equals($y)` consistently return `true` or consistently return `false`, provided no information used in `equals` comparisons on the objects is modified.
-  * For any non-`null` reference value `$x`, `$x->equals(null)` should return `false`.
+  * **Reference Equality** implemented via the trait
+    [`ReferenceEqualityTrait`][57]. Refer to the section
+    [Usage](#reference-equality) below for an example.
+  * **Value Equality** implemented via the trait [`ValueEqualityTrait`][58].
+    Refer to the section [Usage](#value-equality) below for an example.
+* Allows to create a custom equivalence relation by implementing the interface
+  [`EqualityInterface`][56], more precisely implementing the public method
+  `equals` of that interface. Refer to the section [Usage](#custom-equality)
+  below for an example.
+* The `equals` method implements an equivalence relation on non-`null` object
+  references:
+  * It is *reflexive*: for any non-`null` reference value `$x`, `$x->equals($x)`
+    should return `true`.
+  * It is *symmetric*: for any non-`null` reference values `$x` and `$y`,
+    `$x->equals($y)` should return `true` if and only if `$y->equals($x)`
+    returns `true`.
+  * It is *transitive*: for any non-`null` reference values `$x`, `$y`, and
+    `$z`, if `$x->equals($y)` returns `true` and `$y->equals($z)` returns
+    `true`, then `$x->equals($z)` should return `true`.
+  * It is *consistent*: for any non-`null` reference values `$x` and `$y`,
+    multiple invocations of `$x->equals($y)` consistently return `true` or
+    consistently return `false`, provided no information used in `equals`
+    comparisons on the objects is modified.
+  * For any non-`null` reference value `$x`, `$x->equals(null)` should return
+    `false`.
 * Artifacts tested with both static and dynamic test procedures:
-    * Dynamic component tests (unit tests) implemented using [PHPUnit][19].
+    * Dynamic component tests (unit and integration tests) implemented with
+      [PHPUnit][41].
     * Static code analysis performed using the following tools:
-        * [PHP_CodeSniffer][14]: Style Checker
-        * [PHP Mess Detector (PHPMD)][18]: Code Analyzer
-        * [phpcpd][4]: Copy/Paste Detector (CPD)
-        * [phpdcd][5]: Dead Code Detector (DCD)
-* Installable via [Composer][3] or the [PEAR command line installer][11]:
-    * Provides a [Packagist][25] package which can be installed using the dependency manager [Composer][3].
-      Click [here][24] for the package on [Packagist][25].
-    * Provides a [PEAR package][13] which can be installed using the package manager [PEAR installer][11].
-      Click [here][9] for the [PEAR channel][12].
-* Provides a complete Application Programming Interface (API) documentation generated with the documentation generator [ApiGen][2].
-  Click [here][1] for the current API documentation.
-* Follows the [PSR-0][6] requirements for autoloader interoperability.
-* Follows the [PSR-1][7] basic coding style guide.
-* Follows the [PSR-2][8] coding style guide.
-* Follows the [Semantic Versioning][20] Specification (SemVer) 2.0.0-rc.1.
+        * [PHP_CodeSniffer][40]: Style Checker
+        * [PHP Mess Detector (PHPMD)][44]: Code Analyzer
+        * [PHP Depend][45]: Code Metrics
+        * [phpcpd][42]: Copy/Paste Detector (CPD)
+        * [phpdcd][43]: Dead Code Detector (DCD)
+        * [SensioLabs Security Checker][47]: Security Checker
+    * Continuous Integration (CI) using the following web services:
+        * [Scrutinizer CI][21]
+        * [SensioLabsInsight][22]
+        * [Coveralls][23]
+        * [VersionEye][24]
+        * [Depending][25]
+        * [Waffle][26]
+* Provides a [Packagist][3] package which can be installed using the dependency
+  manager [Composer][2]. Click [here][51] for the package on [Packagist][3].
+* Provides a complete Application Programming Interface (API) documentation
+  generated with the documentation generator [Sami][46]. Click
+  [here][52] for the API documentation.
+* Follows the following "standards" from the [PHP Framework Interoperability
+  Group (FIG)][10]. PSR stands for PHP Standards Recommendation:
+    * [PSR-0][11]: Autoloading Standards
+
+        > Aims to provide a standard file, class and namespace convention to
+        > allow plug-and-play code.
+    * [PSR-1][12]: Basic Coding Standard
+
+        > Aims to ensure a high level of technical interoperability between
+        > shared PHP code.
+    * [PSR-2][13]: Coding Style Guide
+
+        > Provides a Coding Style Guide for projects looking to standardize
+        > their code.
+    * [PSR-4][14]: Autoloader
+
+        > A more modern take on autoloading reflecting advances in the
+        > ecosystem.
+* Follows the [Semantic Versioning][4] (SemVer) specification version 2.0.0.
 
 ## Requirements
 
-* [PHP][17] >= 5.4
+### Production
 
-## Usage
+* [PHP][1] >= 5.4
+* [Composer][2]
 
-The best documentation for **FlorianWolters\Component\Core\Equality** are the unit tests, which are shipped in the package. You will find them installed into your [PEAR][10] repository, which on Linux systems is normally `/usr/share/php/test`.
+### Development
 
-The most important usage rule:
-
-> Always implement the interface [`EqualityInterface`][28] if using the trait [`ReferenceEqualityTrait`][29] or [`ValueEqualityTrait`][30], since that allows [Type Hinting][32].
-
-### Examples
-
-The class [`EqualityExample`](src/docs/EqualityExample.php) can be run via the command `php src/docs/EqualityExample.php` from the root of the project.
-
-#### Reference Equality
-
-The class [`ReferenceEqualityImpl`](src/tests/mocks/FlorianWolters/Mock/ReferenceEqualityImpl.php) uses the **Reference Equality** implementation of the trait [`ReferenceEqualityTrait`][29], that utilizes the identity operator (`===`) of [PHP][17].
-
-#### Value Equality
-
-The class [`ValueEqualityImpl`](src/tests/mocks/FlorianWolters/Mock/ValueEqualityImpl.php) uses the **Value Equality** implementation of the trait [`ValueEqualityTrait`][30], that utilizes the equality operator (`==`) of [PHP][17].
-
-#### Custom Equality
-
-One can define a custom equivalence relation by implementing the interface [`EqualityInterface`][28], more precisely implementing the public method `equals` of that interface.
-
-***
-**Note:** The equivalence relations must be *reflexive*, *symmetric*, *transitive* and *consistent*. Refer to the section [Features](#features) for a more detailed explanation of these characteristics.
-***
-
-For example, a custom equivalence relation for a simple *Domain Object* could be specified as:
-
-```php
-use FlorianWolters\Component\Core\EqualityInterface;
-
-<?php
-class CustomEqualityImpl implements EqualityInterface
-{
-    /**
-     * The *Identity Field* value.
-     *
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * The version.
-     *
-     * @var integer
-     */
-    private $version;
-
-    /**
-     * Constructs a new object.
-     *
-     * @param integer $id      The *Identity Field* value.
-     * @param integer $version The version.
-     */
-    public function __construct($id, $version)
-    {
-        $this->id = $id;
-        $this->version = $version;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function equals(EqualityInterface $other = null)
-    {
-        // Check the type of the argument with the type operator "instanceof".
-        return (true === ($other instanceof self))
-            ? ($this->id === $other->id)
-            : false;
-    }
-}
-```
+* [PHPUnit][41]
+* [phpcpd][42]
+* [phpdcd][43]
+* [PHP_CodeSniffer][40]
+* [PHP Mess Detector (PHPMD)][44]
+* [Sami][46]
+* [SensioLabs Security Checker][47]
+* [php-coveralls][48]
 
 ## Installation
 
-### Local Installation
+**Component\Core\Equality** should be installed using the
+dependency manager [Composer][2].
 
-**FlorianWolters\Component\Core\Equality** should be installed using the dependency manager [Composer][3]. [Composer][3] can be installed with [PHP][6].
+> [Composer][2] is a tool for dependency management in [PHP][1]. It allows you
+> to declare the dependent libraries your project needs and it will install them
+> in your project for you.
 
-    php -r "eval('?>'.file_get_contents('http://getcomposer.org/installer'));"
+The [Composer][2] installer can be downloaded with `php`.
 
-> This will just check a few [PHP][17] settings and then download `composer.phar` to your working directory. This file is the [Composer][3] binary. It is a PHAR ([PHP][17] archive), which is an archive format for [PHP][17] which can be run on the command line, amongst other things.
->
-> Next, run the `install` command to resolve and download dependencies:
+    php -r "readfile('https://getcomposer.org/installer');" | php
+
+> This will just check a few [PHP][1] settings and then download `composer.phar`
+> to your working directory. This file is the [Composer][2] binary. It is a PHAR
+> ([PHP][1] archive), which is an archive format for [PHP][1] which can be run
+> on the command line, amongst other things.
+
+> To resolve and download dependencies, run the `install` command:
 
     php composer.phar install
 
-### System-Wide Installation
-
-**FlorianWolters\Component\Core\Equality** should be installed using the [PEAR installer][11]. This installer is the [PHP][17] community's de-facto standard for installing [PHP][17] components.
-
-    pear channel-discover pear.florianwolters.de
-    pear install --alldeps fw/Equality
-
-## As A Dependency On Your Component
-
-### Composer
-
-If you are creating a component that relies on **FlorianWolters\Component\Core\Equality**, please make sure that you add **FlorianWolters\Component\Core\Equality** to your component's `composer.json` file:
+If you are creating a component that relies on **Component\Core\Equality**, please make sure that you add **Component\Core\Equality** to your component's `composer.json` file:
 
 ```json
 {
     "require": {
-        "florianwolters/component-core-equality": "0.2.*"
+        "florianwolters/component-core-equality": "0.3.*"
     }
 }
 ```
 
-### PEAR
+## Usage
 
-If you are creating a component that relies on **FlorianWolters\Component\Core\Equality**, please make sure that you add **FlorianWolters\Component\Core\Equality** to your component's `package.xml` file:
+The best documentation for **Component\Core\Equality** are the
+unit tests, which are shipped in the package.
 
-```xml
-<dependencies>
-  <required>
-    <package>
-      <name>Equality</name>
-      <channel>pear.florianwolters.de</channel>
-      <min>0.2.0</min>
-      <max>0.2.99</max>
-    </package>
-  </required>
-</dependencies>
-```
+The most important usage rule:
 
-## Development Environment
+> Always implement the interface [`EqualityInterface`][56] if using the trait
+> [`ReferenceEqualityTrait`][57] or [`ValueEqualityTrait`][58], since that
+> allows [Type Hinting][55].
 
-If you want to patch or enhance this component, you will need to create a suitable development environment. The easiest way to do that is to install [phix4componentdev][16]:
+The class [`EqualityExample`][60] can be run via the command
+`php resources/php/EqualityExample.php` from the root of the project.
 
-    # phix4componentdev
-    pear channel-discover pear.phix-project.org
-    pear install phix/phix4componentdev
+### Reference Equality
 
-You can then clone the Git repository:
+The class [`ReferenceEqualityImpl`][61] uses the **Reference Equality**
+implementation of the trait [`ReferenceEqualityTrait`][57], that utilizes the
+identity operator (`===`) of [PHP][1].
 
-    # PHP-Component-Core-Equality
-    git clone http://github.com/FlorianWolters/PHP-Component-Core-Equality
+### Value Equality
 
-Then, install a local copy of this component's dependencies to complete the development environment:
+The class [`ValueEqualityImpl`][62] uses the **Value Equality** implementation
+of the trait [`ValueEqualityTrait`][58], that utilizes the equality operator
+(`==`) of [PHP][1].
 
-    # build vendor/ folder
-    phing build-vendor
+### Custom Equality
 
-To make life easier for you, common tasks (such as running unit tests, generating code review analytics, and creating the [PEAR package][13]) have been automated using [phing][15]. You'll find the automated steps inside the `build.xml` file that ships with the component.
+One can define a custom equivalence relation by implementing the interface
+[`EqualityInterface`][56], more precisely implementing the public method
+`equals` of that interface.
 
-Run the command `phing` in the component's top-level folder to see the full list of available automated tasks.
+***
+**Note:** The equivalence relations must be *reflexive*, *symmetric*,
+*transitive* and *consistent*. Refer to the section [Features](#features) for a
+more detailed explanation of these characteristics.
+***
+
+An example for a custom equivalence relation for a simple *Domain Object* is
+shown with the class [`CustomEqualityImpl`][63].
+
+## Testing
+
+    phpunit
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Credits
+
+* [Florian Wolters][9]
+* [All Contributors][50]
 
 ## License
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the
+terms of the GNU Lesser General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
 
-You should have received a copy of the GNU Lesser General Public License along with this program. If not, see <http://gnu.org/licenses/lgpl.txt>.
+You should have received a copy of the GNU Lesser General Public License along
+with this program. If not, see <https://gnu.org/licenses/lgpl.txt>.
 
-[1]: http://blog.florianwolters.de/PHP-Component-Core-Equality
-     "FlorianWolters\Component\Core | Application Programming Interface (API) documentation"
-[2]: http://apigen.org
-     "ApiGen | API documentation generator for PHP 5.3.+"
-[3]: http://getcomposer.org
+[1]: https://php.net
+     "PHP: Hypertext Preprocessor"
+[2]: https://getcomposer.org
      "Composer"
-[4]: https://github.com/sebastianbergmann/phpcpd
-     "sebastianbergmann/phpcpd · GitHub"
-[5]: https://github.com/sebastianbergmann/phpdcd
-     "sebastianbergmann/phpdcd · GitHub"
-[6]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
-     "PSR-0 requirements for autoloader interoperability"
-[7]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
-     "PSR-1 basic coding style guide"
-[8]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
-     "PSR-2 coding style guide"
-[9]: http://pear.florianwolters.de
-     "PEAR channel of Florian Wolters"
-[10]: http://pear.php.net
-      "PEAR - PHP Extension and Application Repository"
-[11]: http://pear.php.net/manual/en/guide.users.commandline.cli.php
-      "Manual :: Command line installer (PEAR)"
-[12]: http://pear.php.net/manual/en/guide.users.concepts.channel.php
-      "Manual :: PEAR Channels"
-[13]: http://pear.php.net/manual/en/guide.users.concepts.package.php
-      "Manual :: PEAR Packages"
-[14]: http://pear.php.net/package/PHP_CodeSniffer
+[3]: https://packagist.org
+     "Packagist"
+[4]: http://semver.org
+     "Semantic Versioning"
+[9]: https://github.com/FlorianWolters
+     "FlorianWolters · GitHub"
+[10]: http://php-fig.org
+      "PHP-FIG — PHP Framework Interop Group"
+[11]: http://php-fig.org/psr/psr-0
+      "PSR-0 requirements for autoloader interoperability"
+[12]: http://php-fig.org/psr/psr-1
+      "PSR-1 basic coding style guide"
+[13]: http://php-fig.org/psr/psr-2
+      "PSR-2 coding style guide"
+[14]: http://php-fig.org/psr/psr-4
+      "PSR-4: Improved Autoloading"
+[20]: https://travis-ci.org
+      "Travis CI"
+[21]: https://scrutinizer-ci.com
+      "Scrutinizer CI"
+[22]: https://insight.sensiolabs.com
+      "SensioLabsInsight"
+[23]: https://coveralls.io
+      "Coveralls"
+[24]: https://versioneye.com
+      "VersionEye"
+[25]: https://depending.in
+      "Depending"
+[26]: https://waffle.io
+      "Waffle"
+[27]: http://hhvm.h4cc.de
+      "HHVM Support in PHP Projects"
+[40]: https://pear.php.net/package/PHP_CodeSniffer
       "PHP_CodeSniffer"
-[15]: http://phing.info
-      "Phing"
-[16]: https://github.com/stuartherbert/phix4componentdev
-      "stuartherbert/phix4componentdev · GitHub"
-[17]: http://php.net
-      "PHP: Hypertext Preprocessor"
-[18]: http://phpmd.org
+[41]: https://phpunit.de
+      "PHPUnit"
+[42]: https://github.com/sebastianbergmann/phpcpd
+      "sebastianbergmann/phpcpd · GitHub"
+[43]: https://github.com/sebastianbergmann/phpdcd
+      "sebastianbergmann/phpdcd · GitHub"
+[44]: http://phpmd.org
       "PHPMD - PHP Mess Detector"
-[19]: http://phpunit.de
-      "sebastianbergmann/phpunit · GitHub"
-[20]: http://semver.org
-      "Semantic Versioning"
-[24]: http://packagist.org/packages/florianwolters/component-core-equality
+[45]: http://pdepend.org
+      "PHP Depend - Software Metrics for PHP"
+[46]: https://github.com/fabpot/sami
+      "fabpot/sami · GitHub"
+[47]: https://github.com/sensiolabs/security-checker
+      "SensioLabs Security Checker"
+[48]: https://github.com/satooshi/php-coveralls
+      "satooshi/php-coveralls · GitHub"
+[50]: https://github.com/FlorianWolters/PHP-Component-Core-Equality/contributors
+      "Contributors to FlorianWolters/PHP-Component-Core-Equality"
+[51]: https://packagist.org/packages/florianwolters/component-core-equality
       "florianwolters/component-core-equality - Packagist"
-[25]: http://packagist.org
-      "Packagist"
-[26]: http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#equals(java.lang.Object)
+[52]: http://blog.florianwolters.de/PHP-Component-Core-Equality
+      "Application Programming Interface (API) documentation"
+[53]: http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#equals(java.lang.Object)
       "Object (Java Platform SE 7)"
-[27]: http://java.com
-      "java.com: Java + You"
-[28]: src/php/FlorianWolters/Component/Core/EqualityInterface.php
-      "FlorianWolters\Component\Core\EqualityInterface"
-[29]: src/php/FlorianWolters/Component/Core/ReferenceEqualityTrait.php
-      "FlorianWolters\Component\Core\ReferenceEqualityTrait"
-[30]: src/php/FlorianWolters/Component/Core/ValueEqualityTrait.php
-      "FlorianWolters\Component\Core\ValueEqualityTrait"
-[31]: src/php/FlorianWolters/Component/Core/EqualityUtils.php
-      "FlorianWolters\Component\Core\EqualityUtils"
-[32]: http://php.net/language.oop5.typehinting
+[54]: http://java.com
+      "Java"
+[55]: https://php.net/language.oop5.typehinting
       "PHP: Type Hinting - Manual"
+[56]: src/main/php/EqualityInterface.php
+      "FlorianWolters\Component\Core\EqualityInterface"
+[57]: src/main/php/ReferenceEqualityTrait.php
+      "FlorianWolters\Component\Core\ReferenceEqualityTrait"
+[58]: src/main/php/ValueEqualityTrait.php
+      "FlorianWolters\Component\Core\ValueEqualityTrait"
+[59]: src/main/php/EqualityUtils.php
+      "FlorianWolters\Component\Core\EqualityUtils"
+[60]: resources/php/EqualityExample.php
+      "FlorianWolters\Example\EqualityExample"
+[61]: resources/php/ReferenceEqualityImpl.php
+      "FlorianWolters\Example\ReferenceEqualityImpl"
+[62]: resources/php/ValueEqualityImpl.php
+      "FlorianWolters\Example\ValueEqualityImpl"
+[63]: resources/php/CustomEqualityImpl.php
+      "FlorianWolters\Example\CustomEqualityImpl"

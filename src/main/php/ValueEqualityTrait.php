@@ -1,17 +1,24 @@
 <?php
+/**
+ * FlorianWolters\Component\Core\Equality
+ *
+ * PHP Version 5.4
+ *
+ * @author    Florian Wolters <wolters.fl@gmail.com>
+ * @copyright 2012-2014 Florian Wolters (http://blog.florianwolters.de)
+ * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
+ * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
+ */
+
 namespace FlorianWolters\Component\Core;
 
 /**
- * The interface {@see EqualityInterface} indicates that an implementing class
- * implements an equivalence relation on non-`null` object references.
+ * The trait {@see ValueEqualityTrait} implements a **value** equivalence
+ * relation on non-`null` object references.
  *
- * @author    Florian Wolters <wolters.fl@gmail.com>
- * @copyright 2012-2013 Florian Wolters
- * @license   http://gnu.org/licenses/lgpl.txt LGPL-3.0+
- * @link      http://github.com/FlorianWolters/PHP-Component-Core-Equality
- * @since     Interface available since Release 0.1.0
+ * @since Trait available since Release 0.2.0
  */
-interface EqualityInterface
+trait ValueEqualityTrait
 {
     /**
      * Indicates whether the specified object is "equal to" this object.
@@ -34,14 +41,23 @@ interface EqualityInterface
      * * For any non-`null` reference value `$x`, `$x->equals(null)` should
      *   return `false`.
      *
+     * The {@see equals} method of trait {@see ValueEqualityTrait} implements an
+     * equivalence relation for value objects; that is, for any non-`null`
+     * reference values `$x` and `$y`, this method returns
+     * `true` if and only if `$x` and `$y` refer to objects of the same class
+     * with the same properties (`$x == `$y` has the value `true`).
+     *
      * The {@see equals} method implements the *Equality Method* implementation
      * pattern.
      *
      * @param EqualityInterface|null $other The reference object with which to
-     *                                      compare.
+     *    compare.
      *
-     * @return boolean `true` if this object is the same as the specified
-     *                 object; `false` otherwise.
+     * @return bool `true` if this object is the same as the specified object;
+     *    `false` otherwise.
      */
-    public function equals(self $other = null);
+    final public function equals(EqualityInterface $other = null)
+    {
+        return ($this == $other);
+    }
 }
